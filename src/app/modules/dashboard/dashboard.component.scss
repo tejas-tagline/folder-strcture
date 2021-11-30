@@ -1,0 +1,102 @@
+.folder-block {
+  padding: 20px 40px;
+  img {
+    width: 20px;
+    max-height: 20px  
+  }
+  .folder-inner-block {
+    padding: 20px 0px;
+    max-width: 300px;
+    .root-tree {
+      padding: 0;
+      li {
+        list-style: none;
+        position: relative;
+        img,span {
+          vertical-align: middle;
+        }
+        span {
+          margin-left: 5px;
+        }
+        .tree-info {
+          display: flex;
+          align-items: center;
+          .tree-option {
+            margin-left: 10px;
+            opacity: 0;
+            visibility: hidden;
+          }
+          &:hover {
+            > .tree-option {
+              opacity:  1;
+              visibility: visible;
+            }
+          }
+        }
+        ul {
+          padding-left: 10px !important;
+          li {
+            padding-left: 20px;
+            padding-top: 4px;
+            &:before {
+              position: absolute;
+              top: 15px;
+              left: 0;
+              width: 10px;
+              height: 1px;
+              margin: auto;
+              content: "";
+              background-color: #666;
+            }
+            &:after {
+              position: absolute;
+              top: 0;
+              bottom: 0px;
+              left: 0;
+              width: 1px;
+              content: "";
+              background-color: #666;
+            }
+            &:last-child:after {
+              height: 15px;
+            }
+            .add-file-folder {
+              > button {
+                margin: 0;
+                border-radius: 2px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .addRootInputWrap {
+      display: inline-flex;
+      padding: 10px;
+      border: 1px solid #000;
+      border-radius: 5px;
+      margin-top: 5px;
+      input {
+        margin: 0 10px;
+      }
+    }
+    button {
+      border-radius: 5px;
+      padding: 2px 5px;
+      &.btn-black {
+        background-color:  #000;
+        border-color: #000;
+        color: #fff;
+      }
+      &.btn-outlined {
+        border:  1px solid #000;
+      }
+      + button {
+        margin-left: 5px;
+      }
+      img {
+        width: 10px;
+      } 
+    }
+  }
+}

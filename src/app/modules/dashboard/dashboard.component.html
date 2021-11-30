@@ -1,0 +1,86 @@
+<ng-container>
+  <div class="folder-block">
+    <button
+      class="btn"
+      (click)="showInput()"
+      [ngClass]="{ disabled: folderList.length > 0 }"
+      [disabled]="folderList.length > 0"
+    >
+      Add folder to root
+    </button>
+    <div class="folder-inner-block">
+      <ul class="root-tree">
+        <li *ngFor="let data of folderList; index as i;">
+          <div class="tree-info">
+            <img src="assets/folder-open-regular.svg" />
+            <span>{{ data.name }} </span>
+            <div class="tree-option">
+              <button class="btn-black" (click)="manageNode('add')">
+                <img src="assets/plus.png" />
+              </button>
+              <button (click)="manageNode('remove')" class="btn-black">
+                <img src="assets/delete.png" />
+              </button>
+            </div>
+          </div>
+          <ul>
+            <li *ngFor="let child of data.children; index as j">
+              <img
+                *ngIf="child.type === 'folder'; else elseBlock"
+                src="assets/folder-open-regular.svg"
+              />
+              <ng-template #elseBlock>
+                <img src="assets/file-regular.svg"
+              /></ng-template>
+              <span>{{ child.name }} </span>
+            </li>
+            <li *ngIf="isAddNode">
+              <div class="add-file-folder">
+                <button (click)="addFile('file')">File</button>
+                <button (click)="addFile('folder')">Folder</button>
+                <div *ngIf="isAddFolder" class="addRootInputWrap">
+                  <img src="{{ imgsrc }}" />
+                  <input
+                    type="text"
+                    name="nodeName"
+                    [value]="nodeName"
+                    #nodeName="ngModel"
+                    ngModel
+                  />
+                  <button
+                    (click)="addNodeFileFolder(nodeName.value)"
+                    class="btn-black"
+                  >
+                    <img src="assets/check.png" />
+                  </button>
+                  <button (click)="isAddFolder = false" class="btn-outlined">
+                    <img src="assets/close.png" />
+                  </button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <div
+        *ngIf="isAddRootFolder && folderList.length === 0"
+        class="addRootInputWrap"
+      >
+        <img src="assets/folder-open-regular.svg" />
+        <input
+          type="text"
+          name="folderName"
+          [value]="folderName"
+          #folderName="ngModel"
+          ngModel
+        />
+        <button (click)="addRootFolder(folderName.value)" class="btn-black">
+          <img src="assets/check.png" />
+        </button>
+        <button (click)="showInput()" class="btn-outlined">
+          <img src="assets/close.png" />
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-container>
