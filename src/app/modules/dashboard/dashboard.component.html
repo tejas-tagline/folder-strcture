@@ -1,5 +1,6 @@
 <ng-container>
   <div class="folder-block">
+    <!-- To add Root folder -->
     <button
       class="btn"
       (click)="showInput()"
@@ -10,20 +11,24 @@
     </button>
     <div class="folder-inner-block">
       <ul class="root-tree">
-        <li *ngFor="let data of folderList; index as i;">
+        <!-- Folder list -->
+        <li *ngFor="let data of folderList; index as i">
           <div class="tree-info">
             <img src="assets/folder-open-regular.svg" />
             <span>{{ data.name }} </span>
             <div class="tree-option">
+              <!-- add folder -->
               <button class="btn-black" (click)="manageNode('add')">
                 <img src="assets/plus.png" />
               </button>
+              <!-- delete folder -->
               <button (click)="manageNode('remove')" class="btn-black">
                 <img src="assets/delete.png" />
               </button>
             </div>
           </div>
           <ul>
+            <!-- List of nodes of folder -->
             <li *ngFor="let child of data.children; index as j">
               <img
                 *ngIf="child.type === 'folder'; else elseBlock"
@@ -36,7 +41,9 @@
             </li>
             <li *ngIf="isAddNode">
               <div class="add-file-folder">
+                <!-- add file to the folder -->
                 <button (click)="addFile('file')">File</button>
+                <!-- add folder to folder -->
                 <button (click)="addFile('folder')">Folder</button>
                 <div *ngIf="isAddFolder" class="addRootInputWrap">
                   <img src="{{ imgsrc }}" />
@@ -62,6 +69,7 @@
           </ul>
         </li>
       </ul>
+      <!-- Input box to add folder at root -->
       <div
         *ngIf="isAddRootFolder && folderList.length === 0"
         class="addRootInputWrap"
